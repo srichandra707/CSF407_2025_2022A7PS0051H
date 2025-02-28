@@ -12,38 +12,43 @@ class wumpusworld:
 
     def create_world(self, n):
         temp_world=np.zeros((n, n), dtype=object)
+        print(len(temp_world))
         temp_world[self.n-1][0]='A'
         components=[]
         while len(components)<self.pits:
             row=randint(0,n-1)
             col=randint(0,n-1)
-            if row!=0 and col!=0 and temp_world[row][col]==0:
+            if (row, col) in [(n-1, 0), (n-1, 1), (n-2, 0)]:
+                continue
+            if temp_world[row][col]==0:
                 temp_world[row][col]='P'
                 components.append(['P',[row,col]])
-            print(temp_world)
-            print()
-            print(components)
-            print()
+            # print(temp_world)
+            # print()
+            # print(components)
+            # print()
         while len(components)<self.pits+self.wumpus:
             row=randint(0,n-1)
             col=randint(0,n-1)
-            if row!=0 and col!=0 and temp_world[row][col]==0:
+            if (row, col) in [(n-1, 0), (n-1, 1), (n-2, 0)]:
+                continue
+            if temp_world[row][col]==0:
                 temp_world[row][col]='W'
                 components.append(['W',[row,col]])
-            print(temp_world)
-            print()
-            print(components)
-            print()
+            # print(temp_world)
+            # print()
+            # print(components)
+            # print()
         while len(components)<self.pits+self.wumpus+self.gold:
             row=randint(0,n-1)
             col=randint(0,n-1)
             if row!=0 and col!=0 and temp_world[row][col]==0:
                 temp_world[row][col]='G'
                 components.append(['G',[row,col]])
-            print(temp_world)
-            print()
-            print(components)
-            print()
+            # print(temp_world)
+            # print()
+            # print(components)
+            # print()
         for t,pos in components:
             if t=='G':
                 continue
@@ -55,8 +60,6 @@ class wumpusworld:
                 self.create_stench_and_breeze(temp_world,pos[0],pos[1]+1,t=='W')
             if pos[1]-1>=0:
                 self.create_stench_and_breeze(temp_world,pos[0],pos[1]-1,t=='W')
-            
-
         return temp_world
     
     def create_stench_and_breeze(self,world,row,col,stench):
@@ -66,16 +69,16 @@ class wumpusworld:
             else:
                 if 'S' not in world[row][col] and world[row][col]!='P':
                     world[row][col]+=',S'
-            print(world)
-            print()
+            # print(world)
+            # print()
         else:
             if world[row][col]==0:
                 world[row][col]='B'
             else:
                 if 'B' not in world[row][col] and world[row][col]!='P' and world[row][col]!='W':
                     world[row][col]+=',B'
-            print(world)
-            print()
+            # print(world)
+            # print()
     def get_cartesian_coordinates(self,world,row,col):
         return world[self.n-row][col-1]
 
