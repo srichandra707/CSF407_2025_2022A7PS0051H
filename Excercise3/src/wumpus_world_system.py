@@ -269,6 +269,41 @@ class EnhancedWumpusWorld(wumpusworld):
         wumpusworld.save_world_as_png(self, f"{self.output_directory}/world.png")
         wumpusworld.save_world_as_txt(self, f"{self.output_directory}/world.txt")
         self.strategy='bayesian' if flag==1 else 'random'
+    
+    def make_single_move(self, strategy):
+
+        x, y = self.agent.current_pos
+        cart_x = self.n - x
+        cart_y = y + 1
+        cell_content = self.get_cartesian_coordinates(self.world, cart_x, cart_y)
+        cell_str = str(cell_content)
+
+        self.bn.update_evidence((x, y), 'B' in cell_str, 'S' in cell_str)
+
+        self.agent.mark_safe()
+        
+        self.visualize_risk()
+        if 'G' in cell_str:
+            print(f"Step {self.step}: Gold found at {self.agent.current_pos}!")
+            self.save_world_state()
+            return 1
+        if 'P' in cell_str or 'W' in cell_str:
+            print(f"Step {self.step}: Agent died at {self.agent.current_pos} with {cell_str}!")
+            self.agent.handle_death(cell_str)
+            self.save_world_state()
+            return 0
+
+        next_pos = self.agent.make_move(strategy)
+        if next_pos:
+            self.agent.current_pos = next_pos
+            self.agent.visited.add(next_pos)
+            self.agent.safe_positions.append(next_pos)
+            self.step += 1
+            print(f"Step {self.step}: Moved to {next_pos} using {strategy} strategy")
+            self.save_world_state()
+        else:
+            print(f"Step {self.step}: No valid moves available, game over.")
+            self.game_over = True
 
     def run_simulation(self):
         

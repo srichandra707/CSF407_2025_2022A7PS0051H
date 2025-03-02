@@ -144,35 +144,45 @@ def random_move(game):
     empty = game.get_empty_spots()
     return random.choice(empty) if empty else None
 
-def run_trials(n, num_trials, llm1_client, llm1_model, llm2_client, llm2_model):
-    results = []
-    max_moves = n * n  # Ensure trials end even if no win
-    for trial in range(num_trials):
-        first_player = 1 if trial % 2 == 0 else 2
-        print(f"\nStarting trial {trial + 1}/{num_trials} (Player {first_player} starts)")
-        game = TicTacToe(n)
-        game.current_player = first_player
-        last_move = None
-        move_count = 0
-        while game.check_win() == 0 and move_count < max_moves:
-            move = (get_llm_move(game, 1, last_move, llm1_client, llm1_model) if game.current_player == 1 
-                    else get_llm_move(game, 2, last_move, llm2_client, llm2_model))
-            if move and game.make_move(*move):
-                last_move = move
-                move_count += 1
-            else:
-                print(f"Trial {trial + 1}: No valid move after {move_count} moves")
+def run_trials(n, num_trials, llm1_client, llm1_model, llm2_client, llm2_model, wumpus_world):
+    flag=0
+    while flag==0:
+        results = []
+        max_moves = n * n
+        for trial in range(num_trials):
+            first_player = 1 if trial % 2 == 0 else 2
+            print(f"\nStarting Tic-Tac-Toe trial {trial + 1}/{num_trials} (Player {first_player} starts)")
+            game = TicTacToe(n)
+            game.current_player = first_player
+            last_move = None
+            move_count = 0
+            while game.check_win() == 0 and move_count < max_moves:
+                move = (get_llm_move(game, 1, last_move, llm1_client, llm1_model) if game.current_player == 1 
+                        else get_llm_move(game, 2, last_move, llm2_client, llm2_model))
+                if move and game.make_move(*move):
+                    last_move = move
+                    move_count += 1
+                else:
+                    print(f"Trial {trial + 1}: No valid move after {move_count} moves")
+                    break
+            winner = game.check_win()
+            if winner == 0:  
+                results.append(-1) 
+            elif winner == 1:
+                results.append(1)
+            elif winner == 2: 
+                results.append(0) 
+            else: 
+                results.append(-1)
+            print(f"Trial {trial + 1} result: {results[-1]} (1=LLM1, 0=LLM2, -1=Draw)")
+
+            strategy = 'bayesian' if results[-1] == 1 else 'random' 
+            print(f"Making one Wumpus World move with strategy: {strategy} after trial {trial + 1}")
+            flag=wumpus_world.make_single_move(strategy)
+            if flag==1:
                 break
-        winner = game.check_win()
-        if winner == 0:  
-            results.append(-1)
-        elif winner == 1:  # LLM1 wins
-            results.append(1)
-        elif winner == 2:  # LLM2 wins
-            results.append(0) 
-        else:  # winner == -1 (draw)
-            results.append(-1)
-        print(f"Trial {trial + 1} result: {results[-1]} (1=LLM1, 0=LLM2, -1=Draw)")
+    print("Wumpus World final state saved in", wumpus_world.output_directory)
+
     with open("Exercise1.json", "w") as f:
         json.dump({"trials": results}, f)
     return results
@@ -242,11 +252,11 @@ def human_vs_llm(n, llm_client, llm_model):
 
 if __name__ == "__main__":
     try:
-        n = int(input("Enter board size (NxN, e.g., 3): "))
+        n = int(input("Enter Tic-Tac-Toe board size (NxN, e.g., 3): "))
         if n < 2:
             raise ValueError("Give board size >= 2")
 
-        # LLM1 (Groq)
+        # LLM1 (Groq) setup
         llm1_key = os.getenv("GROQ_API_KEY")
         if not llm1_key:
             llm1_key = input("Enter Groq API key for Player 1 (required if GROQ_API_KEY not set): ").strip()
@@ -265,7 +275,7 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"Warning: Could not verify Player 1 model '{llm1_model}': {e}")
 
-        # LLM2 (Groq)
+        # LLM2 (Groq) setup
         llm2_key = os.getenv("GROQ_API_KEY1")
         if not llm2_key:
             llm2_key = input("Enter Groq API key for Player 2 (required if GROQ_API_KEY1 not set): ").strip()
@@ -284,25 +294,24 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"Warning: Could not verify Player 2 model '{llm2_model}': {e}")
 
+        # Initialize Wumpus World once before trials
+        wumpus_size = int(input("Enter Wumpus World size (e.g., 4): "))
+        if wumpus_size < 4:
+            raise ValueError("Wumpus World size must be >= 4")
+        wumpus_world = EnhancedWumpusWorld(wumpus_size, 1)  # Default to Bayesian for initialization; strategy will change per move
+        print("Wumpus World initialized.")
+
         num_trials = int(input("Enter number of trials: "))
-        print(f"Running {num_trials} trials for {n}x{n} board with LLM1 (Groq) vs LLM2 (Groq)...")
-        results = run_trials(n, num_trials, llm1_client, llm1_model, llm2_client, llm2_model)
+        print(f"Running {num_trials} trials for {n}x{n} Tic-Tac-Toe board with LLM1 (Groq) vs LLM2 (Groq)...")
+        results = run_trials(n, num_trials, llm1_client, llm1_model, llm2_client, llm2_model, wumpus_world)
         llm1_wins = sum(1 for r in results if r == 1)
         llm2_wins = sum(1 for r in results if r == 0)
         draws = sum(1 for r in results if r == -1)
         print(f"LLM1 wins: {llm1_wins}, LLM2 wins: {llm2_wins}, Draws: {draws}")
         plot_results(results)
         plot_binomial_distribution(results)
-        llm1_total_wins = llm1_wins
-        llm2_total_wins = llm2_wins + draws
-        flag = 1 if llm1_total_wins > llm2_total_wins else 2
-        print("Results saved in Exercise1.json, regular plot in Exercise1_regular.png, binomial plot in Exercise1.png")\
-        
-        size=int(input("Enter the size of the world: "))
-        world = EnhancedWumpusWorld(size,flag)
-        print(world.strategy)
-        world.run_simulation()
-        
+        print("Results saved in Exercise1.json, regular plot in Exercise1_regular.png, binomial plot in Exercise1.png")
+        print(f"Wumpus World final state saved in {wumpus_world.output_directory}")
 
     except ValueError as e:
         print(f"Error: {e}")
