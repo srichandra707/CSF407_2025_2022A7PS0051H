@@ -39,7 +39,9 @@ screenshot.png
 
 ### Based on the number of trials a binomial distribution is plotted, for example number of trials = 50,
 
-exercise1.png
+![img2](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/241f959bc8694a6c47a292cfc70bcbeedd126821/Excercise1/src/Exercise1.png
+)
+
 
 ### A bar graph has also been plotted basing on the outcomes of various trials
 
