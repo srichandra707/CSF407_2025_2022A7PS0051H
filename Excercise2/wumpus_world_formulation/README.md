@@ -71,23 +71,23 @@ prob_safe_move = inference.query(variables=["A1"], evidence={"B1": 0})
 ## **5. Agent Movement Visualization**
 
 The following images depict the agent's movements step by step:
-Excercise2/images/risk_map_step_0.png
-Excercise2/images/risk_map_step_1.png
-Excercise2/images/risk_map_step_2.png
-Excercise2/images/risk_map_step_3.png
-Excercise2/images/risk_map_step_4.png
-Excercise2/images/risk_map_step_5.png
-Excercise2/images/risk_map_step_6.png
-Excercise2/images/risk_map_step_7.png
-Excercise2/images/risk_map_step_8.png
-Excercise2/images/risk_map_step_9.png
-Excercise2/images/risk_map_step_10.png
-Excercise2/images/risk_map_step_11.png
-Excercise2/images/risk_map_step_12.png
-Excercise2/images/risk_map_step_13.png
-Excercise2/images/risk_map_step_14.png
-Excercise2/images/risk_map_step_15.png
-Excercise2/images/risk_map_step_16.png
+[Excercise2/images/risk_map_step_0.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_0.png?raw=true)
+[Excercise2/images/risk_map_step_1.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_1.png?raw=true)
+[Excercise2/images/risk_map_step_2.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_2.png?raw=true)
+[Excercise2/images/risk_map_step_3.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_3.png?raw=true)
+[Excercise2/images/risk_map_step_4.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_4.png?raw=true)
+[Excercise2/images/risk_map_step_5.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_5.png?raw=true)
+[Excercise2/images/risk_map_step_6.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_6.png?raw=true)
+[Excercise2/images/risk_map_step_7.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_7.png?raw=true)
+[Excercise2/images/risk_map_step_8.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_8.png?raw=true)
+[Excercise2/images/risk_map_step_9.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_9.png?raw=true)
+[Excercise2/images/risk_map_step_10.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_10.png?raw=true)
+[Excercise2/images/risk_map_step_11.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_11.png?raw=true)
+[Excercise2/images/risk_map_step_12.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_12.png?raw=true)
+[Excercise2/images/risk_map_step_13.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_13.png?raw=true)
+[Excercise2/images/risk_map_step_14.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_14.png?raw=true)
+[Excercise2/images/risk_map_step_15.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_15.png?raw=true)
+[Excercise2/images/risk_map_step_16.png](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/main/Excercise2/images/risk_map_step_16.png?raw=true)
 
 
 The agent follows a **probabilistic path-finding approach**, balancing **exploration and risk minimization** using Bayesian inference.
