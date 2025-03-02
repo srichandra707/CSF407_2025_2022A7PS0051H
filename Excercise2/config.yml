@@ -1,0 +1,24 @@
+name: CSF407_2025_2022A7PS0051H
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.8
+  - matplotlib
+  - numpy
+  - scipy
+  - pandas
+  - pillow
+  - pgmpy
+  - pip:
+    - groq
+    - python-dotenv
+    - pgmpy
+  - networkx
+  - pyparsing
+  - pytorch
+  - statsmodels
+  - tqdm
+  - joblib
+  - scikit-learn
+  - seaborn
