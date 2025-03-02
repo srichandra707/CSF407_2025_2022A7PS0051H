@@ -31,7 +31,7 @@ The program constructs a detailed prompt that informs the LLM about:
 
 This prompt is sent using the Groq client's `chat.completions.create` method, and the returned response (from `response.last`) is parsed to determine the next move.
 
-screenshot.png
+![img1](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/15dc925a30bb15df9d6a9829d0c2c6b7d238d523/Excercise1/src/Screenshot%202025-03-02%20152053.png)
 
 ---
 
@@ -45,14 +45,14 @@ screenshot.png
 
 ### A bar graph has also been plotted basing on the outcomes of various trials
 
-exercise1_regular.png
+![img3](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/15dc925a30bb15df9d6a9829d0c2c6b7d238d523/Excercise1/src/Exercise1_regular.png)
 
 ---
 
 ## For Human vs LLM1
 In this mode, the game displays the current board and prompts the human for a move (in "row,col" format) when it's their turn; otherwise, the LLM generates its move using the configured API. The game alternates moves until a win or draw is detected, then prints the final board state and outcome.
 
-screenshot.png
+![img4](https://github.com/srichandra707/CSF407_2025_2022A7PS0051H/blob/15dc925a30bb15df9d6a9829d0c2c6b7d238d523/Excercise1/src/Screenshot%202025-03-02%20152557.png)
 
 ---
 ## Conclusion
