@@ -16,7 +16,9 @@ conda env create -f config.yml
 conda activate myenv
 conda list
 ```
-
+## How to Run
+- Go to `src` folder -> open `exercise3.py` -> run it
+---
 ## Working of the System
 
 1. **Tic-Tac-Toe Trials**  
@@ -35,12 +37,6 @@ conda list
    - After the tic-tac-toe trials, you enter a “world size.”
    - The system initializes an **EnhancedWumpusWorld** with an agent strategy based on which LLM performed better.
    - The simulation runs, and you can observe the agent’s risk-based actions in the environment.
-
----
-
-## How to Run
-
-
 
 ---
 
