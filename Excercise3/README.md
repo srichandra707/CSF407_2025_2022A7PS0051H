@@ -34,9 +34,11 @@ conda list
      - `Exercise1.png`: A binomial distribution plot showing the probability of LLM1 wins.
 
 3. **Wumpus World**  
-   - After the tic-tac-toe trials, you enter a “world size.”
+   - After each tic-tac-toe trial, you enter “world size.”
    - The system initializes an **EnhancedWumpusWorld** with an agent strategy based on which LLM performed better.
    - The simulation runs, and you can observe the agent’s risk-based actions in the environment.
+   - Once gold is found in the wumpus world, then system wins.
+   - **Note that we have to give a higher number of trials so that in wumpus world the agent is able to find gold, otherwise it might end up not finding gold and tictactoe trials might end**
 
 ---
 
