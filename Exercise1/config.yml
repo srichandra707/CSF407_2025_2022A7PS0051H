@@ -1,0 +1,13 @@
+name: CSF407_2025_2022A7PS0051H
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+    - groq
+    - scipy
+    - matplotlib
+    - numpy
+    - python-dotenv
