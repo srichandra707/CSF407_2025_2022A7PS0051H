@@ -16,8 +16,8 @@ conda env create -f config.yml
 conda activate myenv
 conda list
 ```
-## How to Run
-- Go to `src` folder -> open `exercise3.py` -> run it
+## How to run the rogram:
+- Go to `src` folder -> open `Exercise3.py` -> run it
 ---
 ## Working of the System
 
