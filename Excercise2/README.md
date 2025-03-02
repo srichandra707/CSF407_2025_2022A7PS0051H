@@ -3,7 +3,7 @@
 
 ## How to run the program:
 
-Go to 'src' folder -> open 'wumpus_world_system.py' -> run it -> enter value of 'n' (n>=4)
+- Go to `src` folder -> open `wumpus_world_system.py` -> run it -> enter value of `n` (n>=4)
 
 ## **1. Description of the World**
 The world is a **grid-based environment**, similar to Norvig's "Wumpus World." The agent must navigate this world while avoiding pits (`P`) and collecting gold (`G`). The grid contains:
