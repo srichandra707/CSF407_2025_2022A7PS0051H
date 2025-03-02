@@ -281,6 +281,7 @@ class EnhancedWumpusWorld(wumpusworld):
 
             if 'G' in cell_str:
                 print(f"Gold found at step {self.step}!")
+                self.save_world_state()
                 break
             if 'P' in cell_str or 'W' in cell_str:
                 print(cell_str)
@@ -288,6 +289,7 @@ class EnhancedWumpusWorld(wumpusworld):
                 self.agent.handle_death(cell_str)
                 continue
             
+            self.save_world_state()
             strategy = 'bayesian'
             next_pos = self.agent.make_move(strategy)
 
@@ -297,6 +299,34 @@ class EnhancedWumpusWorld(wumpusworld):
                 self.agent.safe_positions.append(next_pos)
                 self.step += 1
 
+    def save_world_state(self):
+        fig, ax = plt.subplots(figsize=(8, 8))
+
+        
+        ax.set_xticks(np.arange(-0.5, self.n, 1), minor=True)
+        ax.set_yticks(np.arange(-0.5, self.n, 1), minor=True)
+        ax.grid(which="minor", color="black", linestyle='-', linewidth=0.5)
+        ax.set_xticklabels([])
+        ax.set_yticklabels([])
+        ax.set_title(f"World State - Step {self.step}")
+
+        
+        for i in range(self.n):
+            for j in range(self.n):
+                cell = self.get_cartesian_coordinates(self.world, self.n - i, j + 1)
+                if cell:
+                    ax.text(j, i, str(cell), ha='center', va='center', fontsize=12)
+
+        
+        ax.add_patch(plt.Rectangle(
+            (self.agent.current_pos[1] - 0.5, self.agent.current_pos[0] - 0.5), 1, 1,
+            edgecolor='blue', facecolor='none', lw=3
+        ))
+
+        
+        plt.savefig(os.path.join(self.output_directory, f"world_step_{self.step:03d}.png"))
+        plt.close()
+    
     def visualize_risk(self):
         risk_map = self.bn.get_combined_risk(self.agent.current_pos, self.agent.visited)
 
