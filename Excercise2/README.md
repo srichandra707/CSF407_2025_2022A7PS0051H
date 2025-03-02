@@ -71,8 +71,10 @@ prob_safe_move = inference.query(variables=["A1"], evidence={"B1": 0})
 ## **5. Agent Movement Visualization**
 
 The following images depict the agent's movements step by step:
+### **An Example (Gold at (1,3))**
 ![World](images/world.png)
 
+### **Agent's Movements**
 ![Step 0](images/risk_map_step_0.png)  
 ![Step 1](images/risk_map_step_1.png)  
 ![Step 2](images/risk_map_step_2.png)  
@@ -90,7 +92,7 @@ The following images depict the agent's movements step by step:
 ![Step 14](images/risk_map_step_14.png)  
 ![Step 15](images/risk_map_step_15.png)  
 ![Step 16](images/risk_map_step_16.png)  
-
+### **Gold found at (1,3)**
 
 The agent follows a **probabilistic path-finding approach**, balancing **exploration and risk minimization** using Bayesian inference.
 
