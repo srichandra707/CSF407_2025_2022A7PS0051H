@@ -243,7 +243,7 @@ class WumpusAgent:
         self.bn.evidence[f"W_{x}_{y}"] = 0  
         self.bn.risk_map[x, y] = 0
 
-    def handle_death(self, cell_str):
+    def handle_death(self, cell_str,strategy):
         
         x, y = self.current_pos
         if "P" in cell_str:
@@ -251,8 +251,12 @@ class WumpusAgent:
         if "W" in cell_str:
             self.bn.evidence[f"W_{x}_{y}"] = 1  
         self.bn.risk_map[x, y] = 1
-        if len(self.safe_positions) > 1:
-            self.current_pos = self.safe_positions[-2]
+        if strategy=='bayesian':
+            if len(self.safe_positions) > 1:
+                self.current_pos = self.safe_positions[-2]
+                self.safe_positions.pop()
+        else:
+            self.current_pos=(n-1,0)
             self.safe_positions.pop()
 
 
@@ -295,7 +299,7 @@ class EnhancedWumpusWorld(wumpusworld):
             if 'P' in cell_str or 'W' in cell_str:
                 print(cell_str)
                 print(f"Agent died at step: {self.step}! Restarting...")
-                self.agent.handle_death(cell_str)
+                self.agent.handle_death(cell_str,self.strategy)
                 continue
             
             self.save_world_state()
