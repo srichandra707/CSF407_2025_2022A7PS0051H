@@ -1,6 +1,10 @@
 # Exercise 3: Tic-Tac-Toe & Wumpus World Integration
 
-This project merges the **Tic-Tac-Toe** LLM implementations with a **Wumpus World** system. If LLM1 wins the tic-tac-toe matchup, it indicates a stronger agent; that agent then proceeds to act in the Wumpus World environment. The program also visualizes agent actions in the Wumpus World and provides risk probabilities in each cell.
+This project merges the **Tic-Tac-Toe** game (using Groq LLMs) with a **Wumpus World** simulation. The outcome of the Tic-Tac-Toe trials influences which agent (LLM1 or LLM2) is considered the “best” for the subsequent Wumpus World environment. Specifically:
+- **LLM1** uses a best-move approach (winning, blocking, setup).
+- **LLM2** uses a random move approach if it wins.
+
+After the trials, you specify a Wumpus World size, and the chosen agent strategy is applied to that world.
 
 ---
 
@@ -13,16 +17,34 @@ conda activate myenv
 conda list
 ```
 
-## How It Works
+## Working of the System
 
-1. **Tic-Tac-Toe (LLM vs LLM)**  
-   - The code first runs a series of **LLM vs LLM** tic-tac-toe trials (you specify the board size and number of trials).  
-   - Both players use **Groq** LLMs (you will be prompted for API keys and model names).  
-   - Results are saved in `Exercise1.json`, with outcome plots (`Exercise1_regular.png` and `Exercise1.png`).
+1. **Tic-Tac-Toe Trials**  
+   - You specify a board size (e.g., `3` for a 3x3 board) and the number of trials.
+   - Each trial features **LLM1** (Groq) vs **LLM2** (Groq).
+   - **LLM1** attempts to find a winning, blocking, or setup move using heuristics (and possibly LLM input).
+   - **LLM2** uses random moves if it wins the game, demonstrating a contrasting approach.
 
-2. **Wumpus World**  
-   - After tic-tac-toe trials finish, you enter a **world size** for the Wumpus World.  
-   - The code picks the winning agent (or fallback if a tie) and runs a Wumpus World simulation.  
-   - The simulation uses Bayesian networks (`WumpusBN`) to display or compute risk probabilities.
+2. **Results & Visualization**  
+   - Outcomes (LLM1 win, LLM2 win, draw) are recorded in `Exercise1.json`.
+   - Two plots are generated:
+     - `Exercise1_regular.png`: A bar chart of the outcomes.
+     - `Exercise1.png`: A binomial distribution plot showing the probability of LLM1 wins.
+
+3. **Wumpus World**  
+   - After the tic-tac-toe trials, you enter a “world size.”
+   - The system initializes an **EnhancedWumpusWorld** with an agent strategy based on which LLM performed better.
+   - The simulation runs, and you can observe the agent’s risk-based actions in the environment.
 
 ---
+
+## How to Run
+
+
+
+---
+
+## Conclusion
+
+This setup demonstrates how two distinct LLM approaches, best-move vs. random, perform and how the winner transitions to solving a Wumpus World scenario. 
+
