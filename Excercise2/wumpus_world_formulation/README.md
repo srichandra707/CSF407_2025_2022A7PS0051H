@@ -71,7 +71,23 @@ prob_safe_move = inference.query(variables=["A1"], evidence={"B1": 0})
 ## **5. Agent Movement Visualization**
 
 The following images depict the agent's movements step by step:
-
+Excercise2/images/risk_map_step_0.png
+Excercise2/images/risk_map_step_1.png
+Excercise2/images/risk_map_step_2.png
+Excercise2/images/risk_map_step_3.png
+Excercise2/images/risk_map_step_4.png
+Excercise2/images/risk_map_step_5.png
+Excercise2/images/risk_map_step_6.png
+Excercise2/images/risk_map_step_7.png
+Excercise2/images/risk_map_step_8.png
+Excercise2/images/risk_map_step_9.png
+Excercise2/images/risk_map_step_10.png
+Excercise2/images/risk_map_step_11.png
+Excercise2/images/risk_map_step_12.png
+Excercise2/images/risk_map_step_13.png
+Excercise2/images/risk_map_step_14.png
+Excercise2/images/risk_map_step_15.png
+Excercise2/images/risk_map_step_16.png
 
 
 The agent follows a **probabilistic path-finding approach**, balancing **exploration and risk minimization** using Bayesian inference.
