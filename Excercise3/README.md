@@ -4,6 +4,15 @@ This project merges the **Tic-Tac-Toe** LLM implementations with a **Wumpus Worl
 
 ---
 
+## How to create conda env and add dependencies:
+
+run this in the repo directory in the linux/macos terminal ; in windows, open conda terminal and run
+```bash
+conda env create -f config.yml
+conda activate myenv
+conda list
+```
+
 ## How It Works
 
 1. **Tic-Tac-Toe (LLM vs LLM)**  
