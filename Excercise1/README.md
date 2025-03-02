@@ -3,6 +3,15 @@
 This project implements a **Tic-Tac-Toe** game in Python, leveraging **Groq** Large Language Models (LLMs). You can run two different LLMs against each other (LLM1 vs LLM2) or play against one of the LLMs yourself.
 
 ---
+
+## How to create conda env and add dependencies:
+
+run this in the repo directory in the linux/macos terminal ; in windows, open conda terminal and run
+```bash
+conda env create -f config.yml
+conda activate myenv
+conda list
+```
 ## How to run the program:
 
 - Go to `src` folder -> open `tictactoe.py` -> run it -> enter the following values: 
