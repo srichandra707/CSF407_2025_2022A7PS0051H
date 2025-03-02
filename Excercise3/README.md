@@ -1,8 +1,8 @@
 # Exercise 3: Tic-Tac-Toe & Wumpus World Integration
 
-This project merges the **Tic-Tac-Toe** game (using Groq LLMs) with a **Wumpus World** simulation. The outcome of the Tic-Tac-Toe trials influences which agent (LLM1 or LLM2) is considered the “best” for the subsequent Wumpus World environment. Specifically:
-- **LLM1** uses a best-move approach (winning, blocking, setup).
-- **LLM2** uses a random move approach if it wins.
+This project merges the **Tic-Tac-Toe** game (using Groq LLMs) with a **Wumpus World** simulation. The outcome of the Tic-Tac-Toe trials decides which agent (LLM1 or LLM2) will operate in the Wumpus World:
+- If **LLM1** wins at tic-tac-toe, it uses a **best-move approach** in the Wumpus World.
+- If **LLM2** wins at tic-tac-toe, it uses a **random-move approach** in the Wumpus World.
 
 After the trials, you specify a Wumpus World size, and the chosen agent strategy is applied to that world.
 
