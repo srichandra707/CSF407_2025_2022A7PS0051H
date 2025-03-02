@@ -71,7 +71,7 @@ prob_safe_move = inference.query(variables=["A1"], evidence={"B1": 0})
 ## **5. Agent Movement Visualization**
 
 The following images depict the agent's movements step by step:
-### **An Example (Gold at (1,3))**
+### **An Example (G : Gold)**
 ![World](images/world.png)
 
 ### **Agent's Movements**
